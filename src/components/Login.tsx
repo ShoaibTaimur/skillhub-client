@@ -1,7 +1,6 @@
-import React, { use } from "react";
+import { useContext } from "react";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -17,7 +16,8 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { loginUser,user } = use(AuthContext);
+  const info = useContext(AuthContext);
+  const loginUser=info?.loginUser;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const Login = () => {
     const formData = new FormData(form);
     const email = formData.get("email");
     const password = formData.get("password");
-    loginUser(email, password)
+    loginUser?.(email, password)
       .then((result) => {
         Swal.fire({
           title: "Done!",
@@ -41,7 +41,7 @@ const Login = () => {
             text: "Invalid credential!",
             icon: "error",
           });
-        };
+        }
       });
   };
 

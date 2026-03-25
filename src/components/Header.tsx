@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import { useContext } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,10 +14,12 @@ import Swal from "sweetalert2";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user, logoutUser } = use(AuthContext);
+  const info = useContext(AuthContext);
+  const user=info?.user;
+  const logoutUser=info?.logoutUser
 
   const handleLogout = () => {
-    logoutUser();
+    logoutUser?.();
     Swal.fire({
       title: "Done!",
       text: "Logged out Successful!",

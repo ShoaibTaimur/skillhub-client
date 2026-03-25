@@ -36,7 +36,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       setUser(currentUser);
     });
     return userState;
-  });
+  },[]);
 
   const userInfo = {
     user,
