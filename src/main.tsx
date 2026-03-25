@@ -1,40 +1,64 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router'
-import './index.css'
-import AuthProvider from './Context/AuthProvider'
-import { ThemeProvider } from './components/theme-provider'
-import MainLayout from './components/MainLayout'
-import Login from './components/Login'
-import Home from './components/Home'
-import Signup from './components/Signup'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import "./index.css";
+import AuthProvider from "./Context/AuthProvider";
+import { ThemeProvider } from "./components/theme-provider";
+import MainLayout from "./components/MainLayout";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Signup from "./components/Signup";
+import Skills from "./components/Skills";
+import Dashboard from "./components/Dashboard";
+import Private from "./components/Private";
 
 const router = createBrowserRouter([
-  { path: '/', 
-    Component: MainLayout ,
-    children:[
+  {
+    path: "/",
+    Component: MainLayout,
+    children: [
       {
-        index:true,
-        Component:Home
+        index: true,
+        Component: Login,
       },
       {
-        path:"login",
-        Component:Login
+        path: "signup",
+        Component: Signup,
       },
       {
-        path:"signup",
-        Component:Signup
-      }
-    ]
+        path: "home",
+        element: (
+          <Private>
+            <Home />
+          </Private>
+        ),
+      },
+      {
+        path: "skills",
+        element: (
+          <Private>
+            <Skills />
+          </Private>
+        ),
+      },
+      {
+        path: "dashboard",
+        element: (
+          <Private>
+            <Dashboard />
+          </Private>
+        ),
+      },
+    ],
   },
-])
+]);
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </ThemeProvider>
-  </StrictMode>
-)
+  </StrictMode>,
+);

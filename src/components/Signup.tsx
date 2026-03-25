@@ -1,7 +1,6 @@
 import React, { use } from "react";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -13,17 +12,67 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 import { AuthContext } from "@/Context/AuthContext";
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
-  const {createUser} = use(AuthContext);
+  const { createUser, signInUser, user } = use(AuthContext);
   const navigate = useNavigate();
-  const handleSubmit = e => {
-    e.preventdefault();
-    const form=e.target;
-    const name=form.name.value;
 
+  const handleEmail = () => {
+    signInUser()
+      .then((result) => {
+        Swal.fire({
+          title: "Done!",
+          text: "Account is created!",
+          icon: "success",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Failed!",
+          text: "Account already exists!",
+          icon: "error",
+        });
+      });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
 
+    createUser(email, password)
+      .then(async (result) => {
+        Swal.fire({
+          title: "Done!",
+          text: "Account is created!",
+          icon: "success",
+        });
+        await updateProfile(result.user, {
+          displayName: name,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        if (error.code == "auth/weak-password") {
+          Swal.fire({
+            title: "Failed!",
+            text: "Account password needs to be more then 6 characters!",
+            icon: "error",
+          });
+        } else {
+          Swal.fire({
+            title: "Failed!",
+            text: "Account already exists!",
+            icon: "error",
+          });
+        }
+      });
+  };
   return (
     <div className="flex justify-center min-h-screen items-center">
       <Card className="w-full max-w-md">
@@ -32,11 +81,13 @@ const Signup = () => {
           <CardDescription className="text-center">
             Join SkillHub and start your journey
           </CardDescription>
-          <Button className="w-full py-5 mt-3">Login with Google</Button>
+          <Button onClick={() => handleEmail()} className="w-full py-5 mt-3">
+            Login with Google
+          </Button>
           <CardDescription className="text-center mt-3">Or</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="name">Full Name</Label>
@@ -70,22 +121,17 @@ const Signup = () => {
                   required
                 />
               </div>
+              <Button variant="login" type="submit" className="w-full">
+                Create Account
+              </Button>
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button
-            onSubmit={() => handleSubmit()}
-            variant="login"
-            type="submit"
-            className="w-full"
-          >
-            Create Account
-          </Button>
           <p>
             Already have an account?
             <Button
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
               className="gradient-text"
               variant="link"
             >
