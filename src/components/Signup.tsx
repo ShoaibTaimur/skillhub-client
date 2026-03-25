@@ -1,4 +1,6 @@
-import React, { use } from "react";
+import { useContext } from "react";
+import type React from "react";
+
 import {
   Card,
   CardContent,
@@ -16,12 +18,14 @@ import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
-  const { createUser, signInUser, user } = use(AuthContext);
+  const info = useContext(AuthContext);
+  const createUser = info?.createUser;
+  const signInUser = info?.signInUser;
   const navigate = useNavigate();
 
   const handleEmail = () => {
-    signInUser()
-      .then((result) => {
+    signInUser?.()
+      .then(() => {
         Swal.fire({
           title: "Done!",
           text: "Account is created!",
@@ -29,7 +33,7 @@ const Signup = () => {
         });
         navigate("/");
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           title: "Failed!",
           text: "Account already exists!",
@@ -37,15 +41,18 @@ const Signup = () => {
         });
       });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target;
+    const form = e.currentTarget;
     const formData = new FormData(form);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const nameValue = formData.get("name");
+    const emailValue = formData.get("email");
+    const passwordValue = formData.get("password");
+    const email = typeof emailValue === "string" ? emailValue : "";
+    const password = typeof passwordValue === "string" ? passwordValue : "";
+    const name = typeof nameValue === "string" ? nameValue : "";
 
-    createUser(email, password)
+    createUser?.(email, password)
       .then(async (result) => {
         Swal.fire({
           title: "Done!",

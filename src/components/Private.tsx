@@ -1,9 +1,12 @@
 import { AuthContext } from "@/Context/AuthContext";
-import React, { use } from "react";
+import { useContext } from "react";
 import { Navigate } from "react-router";
+import type { ReactNode } from "react";
 
-const Private = ({ children }) => {
-  const { user } = use(AuthContext);
+
+const Private = ({ children }: { children: ReactNode }) => {
+  const info = useContext(AuthContext);
+  const user=info?.user;
   if (user) {
     return children;
   } else {

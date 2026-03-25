@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import {
   Card,
   CardContent,
@@ -17,16 +17,19 @@ import Swal from "sweetalert2";
 const Login = () => {
   const navigate = useNavigate();
   const info = useContext(AuthContext);
-  const loginUser=info?.loginUser;
+  const loginUser = info?.loginUser;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target;
+    const form = e.currentTarget;
     const formData = new FormData(form);
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const emailValue = formData.get("email");
+    const passwordValue = formData.get("password");
+    const email = typeof emailValue === "string" ? emailValue : "";
+    const password = typeof passwordValue === "string" ? passwordValue : "";
+
     loginUser?.(email, password)
-      .then((result) => {
+      .then(() => {
         Swal.fire({
           title: "Done!",
           text: "Login Successful!",
