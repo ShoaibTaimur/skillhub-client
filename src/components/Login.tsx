@@ -18,6 +18,25 @@ const Login = () => {
   const navigate = useNavigate();
   const info = useContext(AuthContext);
   const loginUser = info?.loginUser;
+  const signInUser = info?.signInUser;
+    const handleEmail = () => {
+      signInUser?.()
+        .then(() => {
+          Swal.fire({
+            title: "Done!",
+            text: "Logged in successfully!",
+            icon: "success",
+          });
+          navigate("/");
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Failed!",
+            text: "Account already exists!",
+            icon: "error",
+          });
+        });
+    };
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,7 +75,7 @@ const Login = () => {
           <CardDescription className="text-center">
             Sign in to your SkillHub account
           </CardDescription>
-          <Button className="w-full py-5 mt-3">Login with Google</Button>
+          <Button onClick={() => handleEmail()} className="w-full py-5 mt-3">Login with Google</Button>
           <CardDescription className="text-center mt-3">Or</CardDescription>
         </CardHeader>
         <CardContent>
