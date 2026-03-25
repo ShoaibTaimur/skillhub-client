@@ -10,6 +10,9 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.gradient-primary {
+    background: linear-gradient(135deg, #f3f5fc, #f9f7fc);
+}
 
 @theme inline {
   --font-heading: var(--font-sans);

@@ -11,6 +11,7 @@ import Signup from "./components/Signup";
 import Skills from "./components/Skills";
 import Dashboard from "./components/Dashboard";
 import Private from "./components/Private";
+import AddSkill from "./components/AddSkill";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
         element: (
           <Private>
             <Dashboard />
+          </Private>
+        ),
+      },
+      {
+        path: "add-skill",
+        element: (
+          <Private>
+            <AddSkill />
           </Private>
         ),
       },
