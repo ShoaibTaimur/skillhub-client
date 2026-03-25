@@ -33,12 +33,13 @@ const Signup = () => {
         });
         navigate("/");
       })
-      .catch(() => {
+      .catch((error) => {
         Swal.fire({
           title: "Failed!",
           text: "Account already exists!",
           icon: "error",
         });
+        console.log(error.code);
       });
   };
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
