@@ -31,15 +31,14 @@ const Signup = () => {
           text: "Account is created!",
           icon: "success",
         });
-        navigate("/");
+        navigate("/home");
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           title: "Failed!",
           text: "Account already exists!",
           icon: "error",
         });
-        console.log(error.code);
       });
   };
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {

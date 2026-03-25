@@ -27,15 +27,14 @@ const Login = () => {
             text: "Logged in successfully!",
             icon: "success",
           });
-          navigate("/");
+          navigate("/home");
         })
-        .catch((error) => {
+        .catch(() => {
           Swal.fire({
             title: "Failed!",
             text: "Account already exists!",
             icon: "error",
           });
-          console.log(error.code);
         });
     };
 
