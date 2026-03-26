@@ -1,23 +1,25 @@
+import { useContext } from "react";
 import Category from "./Category";
 import Comments from "./Comments";
 import FeaturedSkills from "./FeaturedSkills";
-import Footer from "./Footer";
 import Hero from "./Hero";
 import SignupReq from "./SignupReq";
 import WorkingStep from "./WorkingStep";
+import { AuthContext } from "@/Context/AuthContext";
 
 const Home = () => {
-    return (
-        <div>
-            <Hero />
-            <Category />
-            <FeaturedSkills />
-            <WorkingStep />
-            <Comments />
-            <SignupReq />
-            <Footer />
-        </div>
-    );
+  const info = useContext(AuthContext);
+  const user = info?.user;
+  return (
+    <div>
+      <Hero />
+      <Category />
+      <FeaturedSkills />
+      <WorkingStep />
+      <Comments />
+      {user ? "" : <SignupReq />}
+    </div>
+  );
 };
 
 export default Home;

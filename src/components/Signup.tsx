@@ -31,7 +31,7 @@ const Signup = () => {
           text: "Account is created!",
           icon: "success",
         });
-        navigate("/home");
+        navigate("/");
       })
       .catch(() => {
         Swal.fire({
@@ -138,7 +138,7 @@ const Signup = () => {
           <p>
             Already have an account?
             <Button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
               className="gradient-text"
               variant="link"
             >

@@ -31,7 +31,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 shadow-sm">
+    <div className="sticky top-0 z-50 flex items-center justify-between p-4 bg-white/60 backdrop-blur-lg border-b border-white/20">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -40,7 +40,7 @@ const Header = () => {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <NavigationMenuLink
-                onClick={() => navigate("/home")}
+                onClick={() => navigate("/")}
                 className="text-gray-600 text-[14px]"
               >
                 Home
@@ -72,7 +72,7 @@ const Header = () => {
           </Button>
         ) : (
           <Button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/login")}
             className="px-2 py-2 sm:px-4  sm:py-5"
             variant="login"
           >

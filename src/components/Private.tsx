@@ -10,7 +10,7 @@ const Private = ({ children }: { children: ReactNode }) => {
   if (user) {
     return children;
   } else {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 };
 

@@ -27,7 +27,7 @@ const Login = () => {
             text: "Logged in successfully!",
             icon: "success",
           });
-          navigate("/home");
+          navigate("/");
         })
         .catch(() => {
           Swal.fire({
@@ -54,7 +54,7 @@ const Login = () => {
           text: "Login Successful!",
           icon: "success",
         });
-        navigate("/home");
+        navigate("/");
       })
       .catch((error) => {
         if (error.code == "auth/invalid-credential") {

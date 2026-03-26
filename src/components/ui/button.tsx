@@ -19,6 +19,8 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
           login:
           "bg-login/10 text-login hover:bg-login/20 focus-visible:border-login/40 focus-visible:ring-login/20 dark:bg-login/20 dark:hover:bg-login/30 dark:focus-visible:ring-login/40",
+          create:
+          "bg-create/10 text-create hover:bg-create/20 focus-visible:border-create/40 focus-visible:ring-create/20 dark:bg-create/20 dark:hover:bg-create/30 dark:focus-visible:ring-create/40",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
