@@ -12,7 +12,7 @@ const Hero = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center py-25 md:py-30 gradient-primary">
-      <h1 className="inter font-extrabold text-[25px] sm:text-[30px] md:text-[50px] lg:text-[72px]">
+      <h1 className="inter font-extrabold text-[30px] text-center sm:text-[40px] md:text-[50px] lg:text-[72px]">
         Learn. Earn. <span className="gradient-text">Grow Your Skills.</span>
       </h1>
       <p className="inter text-gray-500 w-80 sm:w-120 md:w-150 lg:w-200 text-center text-[12px] sm:text-[13px] md:text-[18px] mb-7">
