@@ -12,6 +12,7 @@ import Skills from "./components/Skills";
 import Dashboard from "./components/Dashboard";
 import Private from "./components/Private";
 import AddSkill from "./components/AddSkill";
+import SkillDetail from "./components/SkillDetail";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <Private>
             <Skills />
+          </Private>
+        ),
+      },
+      {
+        path: "skills/:id",
+        element: (
+          <Private>
+            <SkillDetail />
           </Private>
         ),
       },

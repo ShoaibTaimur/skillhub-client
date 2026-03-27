@@ -20,9 +20,10 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import type React from "react";
 import { CornerUpLeft } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { AuthContext } from "@/Context/AuthContext";
 
 const items = [
   { label: "Design", value: "design" },
@@ -33,14 +34,22 @@ const items = [
 ];
 
 const AddSkill = () => {
-  const navigate=useNavigate();
+  const info = useContext(AuthContext);
+  const user = info?.user;
+  const nameValue = user?.displayName;
+  const name = typeof nameValue === "string" ? nameValue : "";
+  const navigate = useNavigate();
   const [category, setCategory] = useState<string | null>(null);
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const newSkill = Object.fromEntries(formData.entries());
-    fetch("https://skillhub-server-bice.vercel.app/skills", {
+    const newSkillInfo = Object.fromEntries(formData.entries());
+    const newSkill={
+      name,
+      ...newSkillInfo
+    }
+    fetch("http://localhost:8000/skills", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -62,7 +71,8 @@ const AddSkill = () => {
     <div className="flex flex-col justify-center min-h-screen items-center px-10">
       <Card className="w-full max-w-3xl p-5">
         <CardHeader className="pb-5">
-          <Button onClick={()=>navigate("/dashboard")}
+          <Button
+            onClick={() => navigate("/dashboard")}
             variant="link"
             type="submit"
             className="h-10 w-fit border-none mb-2 cursor-pointer flex justify-start px-0"

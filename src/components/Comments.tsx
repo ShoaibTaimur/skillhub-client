@@ -10,7 +10,7 @@ const Comments = () => {
         Trusted by thousands of learners and instructors
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        <div className="border border-gray-250 shadow p-6 flex flex-col gap-4 rounded-2xl">
+        <div className="border bg-white border-gray-250 shadow p-6 flex flex-col gap-4 rounded-2xl">
           <div className="flex">
             <Star className="text-yellow-300 fill-yellow-300" />
             <Star className="text-yellow-300 fill-yellow-300" />
@@ -31,7 +31,7 @@ const Comments = () => {
             </p>
           </div>
         </div>
-        <div className="border border-gray-250 shadow p-6 flex flex-col gap-4 rounded-2xl">
+        <div className="border bg-white border-gray-250 shadow p-6 flex flex-col gap-4 rounded-2xl">
           <div className="flex">
             <Star className="text-yellow-300 fill-yellow-300" />
             <Star className="text-yellow-300 fill-yellow-300" />
@@ -51,7 +51,7 @@ const Comments = () => {
             </p>
           </div>
         </div>
-        <div className="border border-gray-250 shadow p-6 flex flex-col gap-4 rounded-2xl">
+        <div className="border bg-white border-gray-250 shadow p-6 flex flex-col gap-4 rounded-2xl">
           <div className="flex">
             <Star className="text-yellow-300 fill-yellow-300" />
             <Star className="text-yellow-300 fill-yellow-300" />
