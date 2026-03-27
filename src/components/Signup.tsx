@@ -25,12 +25,34 @@ const Signup = () => {
 
   const handleEmail = () => {
     signInUser?.()
-      .then(() => {
+      .then((result) => {
         Swal.fire({
           title: "Done!",
           text: "Account is created!",
           icon: "success",
         });
+        console.log(result.user);
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const creationTime = result.user.metadata.creationTime;
+        const lastSignInTime = result.user.metadata.lastSignInTime;
+        const userInfo = {
+          name,
+          email,
+          creationTime,
+          lastSignInTime,
+        };
+        fetch("http://localhost:8000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         navigate("/");
       })
       .catch(() => {
@@ -62,6 +84,27 @@ const Signup = () => {
         await updateProfile(result.user, {
           displayName: name,
         });
+        const displayName = result.user.displayName;
+        const email = result.user.email;
+        const creationTime = result.user.metadata.creationTime;
+        const lastSignInTime = result.user.metadata.lastSignInTime;
+        const userInfo = {
+          displayName,
+          email,
+          creationTime,
+          lastSignInTime,
+        };
+        fetch("http://localhost:8000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         navigate("/");
       })
       .catch((error) => {
@@ -81,7 +124,7 @@ const Signup = () => {
       });
   };
   return (
-    <div className="flex justify-center min-h-screen items-center">
+    <div className="flex justify-center min-h-screen items-center px-10">
       <Card className="w-full max-w-md">
         <CardHeader className="border-b-2 pb-5">
           <CardTitle className="text-3xl text-center">Create Account</CardTitle>

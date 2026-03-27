@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 const SignupReq = () => {
     const navigate=useNavigate();
   return (
-    <div className="gradient-secondary px-10 py-10">
+    <div className="gradient-secondary px-4 sm:px-10 py-10">
       <h1 className="inter text-center text-white text-[30px] sm:text-[40px] font-bold">
         Ready to Get Started?
       </h1>

@@ -31,7 +31,7 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 flex items-center justify-between p-4 bg-white/60 backdrop-blur-lg border-b border-white/20">
+    <div className="sticky top-0 z-50 flex items-center justify-between py-4 px-4 sm:px-10 bg-white/60 backdrop-blur-lg border-b border-white/20">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>

@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 
 const Comments = () => {
   return (
-    <div className="gradient-primary px-10 py-10">
+    <div className="gradient-primary px-4 sm:px-10 py-10">
       <h1 className="inter font-bold text-[30px] text-center">
         What People Say
       </h1>

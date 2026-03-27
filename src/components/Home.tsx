@@ -11,7 +11,7 @@ const Home = () => {
   const info = useContext(AuthContext);
   const user = info?.user;
   return (
-    <div>
+    <div className="px-4 sm:px-10 gradient-primary">
       <Hero />
       <Category />
       <FeaturedSkills />

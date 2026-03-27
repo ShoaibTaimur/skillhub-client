@@ -40,7 +40,7 @@ const AddSkill = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     const newSkill = Object.fromEntries(formData.entries());
-    fetch("http://localhost:5050/skills", {
+    fetch("https://skillhub-server-bice.vercel.app/skills", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -59,10 +59,10 @@ const AddSkill = () => {
       });
   };
   return (
-    <div className="flex flex-col justify-center min-h-screen items-center">
+    <div className="flex flex-col justify-center min-h-screen items-center px-10">
       <Card className="w-full max-w-3xl p-5">
         <CardHeader className="pb-5">
-          <Button
+          <Button onClick={()=>navigate("/dashboard")}
             variant="link"
             type="submit"
             className="h-10 w-fit border-none mb-2 cursor-pointer flex justify-start px-0"

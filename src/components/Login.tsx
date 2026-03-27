@@ -19,24 +19,45 @@ const Login = () => {
   const info = useContext(AuthContext);
   const loginUser = info?.loginUser;
   const signInUser = info?.signInUser;
-    const handleEmail = () => {
-      signInUser?.()
-        .then(() => {
-          Swal.fire({
-            title: "Done!",
-            text: "Logged in successfully!",
-            icon: "success",
-          });
-          navigate("/");
-        })
-        .catch(() => {
-          Swal.fire({
-            title: "Failed!",
-            text: "Account already exists!",
-            icon: "error",
-          });
+  const handleEmail = () => {
+    signInUser?.()
+      .then((result) => {
+        Swal.fire({
+          title: "Done!",
+          text: "Logged in successfully!",
+          icon: "success",
         });
-    };
+        const displayName = result.user.displayName;
+        const email = result.user.email;
+        const creationTime = result.user.metadata.creationTime;
+        const lastSignInTime = result.user.metadata.lastSignInTime;
+        const userInfo = {
+          displayName,
+          email,
+          creationTime,
+          lastSignInTime,
+        };
+        fetch("http://localhost:8000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+        navigate("/");
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Failed!",
+          text: "Account already exists!",
+          icon: "error",
+        });
+      });
+  };
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,12 +69,33 @@ const Login = () => {
     const password = typeof passwordValue === "string" ? passwordValue : "";
 
     loginUser?.(email, password)
-      .then(() => {
+      .then((result) => {
         Swal.fire({
           title: "Done!",
           text: "Login Successful!",
           icon: "success",
         });
+        const displayName = result.user.displayName;
+        const email = result.user.email;
+        const creationTime = result.user.metadata.creationTime;
+        const lastSignInTime = result.user.metadata.lastSignInTime;
+        const userInfo = {
+          displayName,
+          email,
+          creationTime,
+          lastSignInTime,
+        };
+        fetch("http://localhost:8000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         navigate("/");
       })
       .catch((error) => {
@@ -68,14 +110,16 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen items-center">
+    <div className="flex justify-center min-h-screen items-center px-10">
       <Card className="w-full max-w-md">
         <CardHeader className="border-b-2 pb-5">
           <CardTitle className="text-3xl text-center">Welcome Back</CardTitle>
           <CardDescription className="text-center">
             Sign in to your SkillHub account
           </CardDescription>
-          <Button onClick={() => handleEmail()} className="w-full py-5 mt-3">Login with Google</Button>
+          <Button onClick={() => handleEmail()} className="w-full py-5 mt-3">
+            Login with Google
+          </Button>
           <CardDescription className="text-center mt-3">Or</CardDescription>
         </CardHeader>
         <CardContent>
