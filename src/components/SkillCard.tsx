@@ -19,9 +19,13 @@ const SkillCard = ({ skill }: SkillCardProps) => {
   const name = skill.name;
   const category = skill.category;
   const price = skill.price;
-  const id=skill._id;
+  const id = skill._id;
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const handleAction = () => {
+    navigate(`/skills/${id}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="bg-white p-4 rounded-3xl shadow flex flex-col gap-5">
@@ -47,7 +51,11 @@ const SkillCard = ({ skill }: SkillCardProps) => {
           </div>
         </div>
       </div>
-      <Button onClick={()=>navigate(`/skills/${id}`)} variant="login" className="w-full h-10">
+      <Button
+        onClick={() => handleAction()}
+        variant="login"
+        className="w-full h-10"
+      >
         View Deatils
       </Button>
     </div>
