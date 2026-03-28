@@ -37,7 +37,7 @@ const Login = () => {
           creationTime,
           lastSignInTime,
         };
-        fetch("http://localhost:8000/users", {
+        fetch("https://skillhub-server-bice.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -85,7 +85,7 @@ const Login = () => {
           creationTime,
           lastSignInTime,
         };
-        fetch("http://localhost:8000/users", {
+        fetch("https://skillhub-server-bice.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

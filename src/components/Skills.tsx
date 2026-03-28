@@ -16,7 +16,7 @@ const Skills = () => {
 
   useEffect(()=>{
     const loadData=async()=>{
-        const res=await fetch("http://localhost:8000/skills");
+        const res=await fetch("https://skillhub-server-bice.vercel.app/skills");
         const data=await res.json();
         setSkills(data);
     }
@@ -25,8 +25,8 @@ const Skills = () => {
 
   return (
     <div className="gradiant-primary px-4 sm:px-10">
-        <h1 className="inter font-bold text-[30px]">Browse Skills</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <h1 className="inter font-bold text-[25px] md:text-[30px]">Browse Skills</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {skills.map((skill) => (
           <SkillCard key={skill._id} skill={skill}></SkillCard>
         ))}

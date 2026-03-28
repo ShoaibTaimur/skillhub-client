@@ -25,7 +25,7 @@ const SkillCard = ({ skill }: SkillCardProps) => {
 
   return (
     <div className="bg-white p-4 rounded-3xl shadow flex flex-col gap-5">
-      <div className="mt-3">
+      <div className="mt-3 h-[70%]">
         <div className="bg-[#ede0fd98] py-0.75 px-3 rounded-2xl w-fit flex items-center mb-2">
           <p className="gradient-text font-bold text-[12px]">{category}</p>
         </div>
@@ -34,7 +34,7 @@ const SkillCard = ({ skill }: SkillCardProps) => {
           By- <span className="gradient-text font-extrabold">{name}</span>
         </p>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center h-[15%]">
         <p className="gradient-text inter font-bold">${price}</p>
         <div className="flex gap-2">
           <div className="flex opacity-60 gap-1">

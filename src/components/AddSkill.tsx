@@ -49,7 +49,7 @@ const AddSkill = () => {
       name,
       ...newSkillInfo
     }
-    fetch("http://localhost:8000/skills", {
+    fetch("https://skillhub-server-bice.vercel.app/skills", {
       method: "POST",
       headers: {
         "content-type": "application/json",

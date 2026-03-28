@@ -18,7 +18,7 @@ const FeaturedSkills = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     const loadData= async()=>{
-        const res=await fetch("http://localhost:8000/skills");
+        const res=await fetch("https://skillhub-server-bice.vercel.app/skills");
         const data=await res.json();
         setSkills(data);
     };
