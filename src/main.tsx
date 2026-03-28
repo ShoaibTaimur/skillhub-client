@@ -37,11 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "skills/:id",
-        element: (
-          <Private>
-            <SkillDetail />
-          </Private>
-        ),
+        element: <SkillDetail />,
       },
       {
         path: "dashboard",
