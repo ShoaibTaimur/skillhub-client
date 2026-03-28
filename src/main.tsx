@@ -29,15 +29,11 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        Component: Login
+        Component: Login,
       },
       {
         path: "skills",
-        element: (
-          <Private>
-            <Skills />
-          </Private>
-        ),
+        element: <Skills />,
       },
       {
         path: "skills/:id",
