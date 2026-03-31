@@ -22,10 +22,12 @@ const SkillDetail = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
       const res = await fetch("https://skillhub-server-bice.vercel.app/skills");
       const datas: Skill[] = await res.json();
       const updatedSkills = datas.filter((data) => data._id !== id);
       setSkills(updatedSkills);
+      setLoading(false);
     };
     loadData();
   }, [id]);
