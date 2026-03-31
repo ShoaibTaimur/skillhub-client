@@ -1,6 +1,5 @@
 import { Button } from "./ui/button";
 import { Eye, Heart } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import type React from "react";
@@ -13,8 +12,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Field, FieldGroup } from "./ui/field";
 const items = [
   { label: "Design", value: "design" },
   { label: "Programming", value: "programming" },
@@ -73,7 +81,6 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
         }
       });
   };
-
   return (
     <div className="bg-white p-4 rounded-3xl shadow flex flex-col gap-5">
       <div className="mt-3 h-[70%]">
@@ -101,32 +108,34 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
         </div>
       </div>
       <div className="flex">
-        <Popover>
-          <PopoverTrigger
+        <Dialog>
+          <DialogTrigger
             render={
-              <Button className="w-[50%] h-10" variant="login">
-                Edit details
+              <Button
+                className="w-38 sm:w-27 md:w-33 lg:w-30 xl:w-40 mr-5 h-10"
+                variant="login"
+              >
+                Edit
               </Button>
             }
           />
-          <PopoverContent align="end" className="w-80">
-            <div className="grid gap-4">
-              <div className="space-y-2">
-                <h4 className="leading-none font-medium">Edit</h4>
-                <p className="text-sm text-muted-foreground">Edit properly</p>
-              </div>
-              <form onSubmit={(e) => handleSubmit(e)} className="grid gap-2">
-                <div className="grid grid-cols-3 items-center gap-4">
+          <DialogContent className="sm:max-w-sm">
+            <DialogHeader>
+              <DialogTitle>Edit Skill</DialogTitle>
+            </DialogHeader>
+            <FieldGroup>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <Field>
                   <Label htmlFor="title">Tile</Label>
                   <Input
                     name="title"
-                    id="width"
+                    id="title"
                     defaultValue={title}
                     className="col-span-2 h-8"
                     required
                   />
-                </div>
-                <div className="grid grid-cols-3 items-center gap-4">
+                </Field>
+                <Field>
                   <Label htmlFor="category">Category</Label>
                   <Select
                     name="category"
@@ -149,38 +158,43 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                </div>
-                <div className="grid grid-cols-3 items-center gap-4">
+                </Field>
+                <Field>
                   <Label htmlFor="width">Price</Label>
                   <Input
                     name="price"
-                    id="width"
+                    id="price"
                     defaultValue={price}
                     className="col-span-2 h-8"
                     required
                   />
-                </div>
-                <div className="grid grid-cols-3 items-center gap-4">
+                </Field>
+                <Field>
                   <Label htmlFor="width">Description</Label>
                   <Input
                     name="description"
-                    id="width"
+                    id="description"
                     defaultValue={description}
                     className="col-span-2 h-8"
                     required
                   />
+                </Field>
+                <div className="mt-6 space-x-5">
+                  <DialogClose
+                    render={<Button variant="destructive">Cancel</Button>}
+                  />
+                  <Button variant="login" type="submit">
+                    Save changes
+                  </Button>
                 </div>
-                <Button type="submit" variant="outline" className="h-10">
-                  Submit
-                </Button>
               </form>
-            </div>
-          </PopoverContent>
-        </Popover>
+            </FieldGroup>
+          </DialogContent>
+        </Dialog>
         <Button
           onClick={() => handleDelete(id)}
           variant="destructive"
-          className="w-[50%] h-10"
+          className="w-38 sm:w-27 md:w-33 lg:w-30 xl:w-40 h-10"
         >
           Delete
         </Button>
