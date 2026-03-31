@@ -52,17 +52,17 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const newSkillInfo = Object.fromEntries(formData.entries());
-    const newSkill = {
+    const updatedSkillInfo = Object.fromEntries(formData.entries());
+    const updatedSkill = {
       name,
-      ...newSkillInfo,
+      ...updatedSkillInfo,
     };
     fetch(`https://skillhub-server-bice.vercel.app/skills/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newSkill),
+      body: JSON.stringify(updatedSkill),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -73,7 +73,6 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
             icon: "success",
           });
         }
-        navigate("/dashboard");
       });
   };
 
