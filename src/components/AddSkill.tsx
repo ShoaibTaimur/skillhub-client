@@ -64,8 +64,8 @@ const AddSkill = () => {
             text: "Skill saved successfully!",
             icon: "success",
           });
-          window.location.reload();
         }
+        navigate("/dashboard");
       });
   };
   return (
