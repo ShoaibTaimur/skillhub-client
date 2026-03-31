@@ -16,6 +16,21 @@
 .gradient-secondary{
   background: linear-gradient(135deg, #3553e9, #8c47d1);
 }
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 @theme inline {
   --font-heading: var(--font-sans);

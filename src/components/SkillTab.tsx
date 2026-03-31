@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
 const items = [
   { label: "Design", value: "design" },
   { label: "Programming", value: "programming" },
@@ -46,7 +45,6 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
   const price = skill.price;
   const id = skill._id;
   const description = skill.description;
-  const navigate=useNavigate();
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();

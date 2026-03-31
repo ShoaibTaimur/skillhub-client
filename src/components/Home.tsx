@@ -12,12 +12,22 @@ const Home = () => {
   const user = info?.user;
   return (
     <div className="px-4 sm:px-10 gradient-primary">
-      <Hero />
-      <Category />
-      <FeaturedSkills />
-      <WorkingStep />
-      <Comments />
-      {user ? "" : <SignupReq />}
+      <div className="fade-in">
+        <Hero />
+      </div>
+      <div className="fade-in">
+        <Category />
+      </div>
+      <div className="fade-in">
+        <FeaturedSkills />
+      </div>
+      <div className="fade-in">
+        <WorkingStep />
+      </div>
+      <div className="fade-in">
+        <Comments />
+      </div>
+      <div className="fade-in">{user ? "" : <SignupReq />}</div>
     </div>
   );
 };
