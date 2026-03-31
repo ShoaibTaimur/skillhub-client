@@ -70,6 +70,7 @@ const SkillTab = ({ skill, handleDelete }: SkillTabProps) => {
             text: "Skill saved successfully!",
             icon: "success",
           });
+          window.location.reload();
         }
       });
   };
