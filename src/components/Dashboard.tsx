@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import SkillTab from "./SkillTab";
 import Swal from "sweetalert2";
 import { Skeleton } from "./ui/skeleton";
+import { Button } from "./ui/button";
+import { useNavigate } from "react-router";
 
 type Skill = {
   _id: string;
@@ -20,6 +22,7 @@ const Dashboard = () => {
   const user = info?.user;
   const name = user?.displayName;
   const [skills, setSkills] = useState<Skill[]>([]);
+  const navigate =useNavigate();
 
   useEffect(() => {
     const loadData = async () => {
@@ -101,7 +104,18 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <h1 className="inter font-bold text-[16px] md:text-[22px]">My skills</h1>
+      <div className="flex justify-between">
+        <h1 className="inter font-bold text-[16px] md:text-[22px]">
+          My skills
+        </h1>
+        <Button
+          onClick={() => navigate("/add-skill")}
+          className="px-4 py-2 sm:px-8 sm:py-5 text-[11px] md:text-[17px]"
+          variant="login"
+        >
+          Add Skill
+        </Button>
+      </div>
       {loading ? (
         <div className="flex justify-center h-60 items-center">
           <div className="flex w-full max-w-4xl flex-col gap-2">
